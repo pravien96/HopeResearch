@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sudoko</title>
+	<script type="text/javascript">
+
+		function formArray(){
+			
+			var given_array = [];
+			
+			var row = [];
+			var k=0;
+
+			for (var i = 0; i < 9; i++) {
+				row = [];
+				for (var j = 0; j < 9; j++) {
+					
+					row[k] = ""+document.getElementById(i+"_"+j).value;
+					k++;
+				}
+				given_array.push(row);
+
+				k=0;
+			}
+			
+			validateSudoko(given_array);
+			
+		}
+
+		function validateSudoko(given_array){
+			//alert(given_array);
+			var row_arr = [0,0,0,0,0,0,0,0,0];
+			var col_arr = [0,0,0,0,0,0,0,0,0];
+
+			for(var i=0; i<9; i++){
+				row_arr = [0,0,0,0,0,0,0,0,0];
+				col_arr = [0,0,0,0,0,0,0,0,0];
+				for(var j=0;j<9; j++){
+					if(!isNaN(parseInt(given_array[i][j]))){
+						row_arr[given_array[i][j]]++;
+						col_arr[given_array[j][i]]++;
+						if((row_arr[given_array[i][j]] > 1)){
+							alert("VALUE IN POSITION ("+i+","+j+") is duplicate in a row");
+							return false;
+						}
+						if((col_arr[given_array[j][i]] > 1)){
+							alert("VALUE IN POSITION ("+j+","+i+") is duplicate in a column");
+							return false;
+						}
+						
+					}
+					if((i%3==0) && (j%3==0)){
+						if(!validateSquare(i,j,given_array))
+							return false;
+					}
+
+				}
+			}
+			alert("valid");
+			return true;
+		}
+
+		function validateSquare(row, col, given_array){
+			var square_array = [0,0,0,0,0,0,0,0,0];
+
+			for(var i=row; i<row+3; i++){
+				for(var j=col; j<col+3; j++){
+					if(!isNaN(parseInt(given_array[i][j]))){
+						square_array[given_array[i][j]]++;
+						if (square_array[given_array[i][j]] > 1){
+							alert("duplicate exists in square matrix in position" + i +"-"+j);
+							return false;
+						}
+					}
+				}
+			}
+
+			return true;
+		}
+
+	</script>
+</head>
+<body>
+	<center>
+	<table border=1>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_0">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_1">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_2">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_3">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_4">2</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_5">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_6">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_7">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="0_8">1</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_0">2</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_1">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_2">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_3">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_4">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_5">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_6">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_7">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="1_8">8</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_0">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_1">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_2">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_3">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_4">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_5">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_6">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_7">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="2_8">2</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_0">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_1">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_2">2</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_3">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_4">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_5">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_6">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_7">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="3_8">6</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_0">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_1">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_2">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_3">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_4">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_5">2</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_6">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_7">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="4_8">3</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="5_0">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="5_1">7</textarea></td>
+			<td ><textarea onfocus="this.select();" rows="1" cols="1" id="5_2">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="5_3">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="5_4">4</textarea></td>
+			<td ><textarea onfocus="this.select();" rows="1" cols="1" id="5_5">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="5_6">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="5_7">2</textarea></td>
+			<td ><textarea onfocus="this.select();" rows="1" cols="1" id="5_8">9</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_0">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_1">2</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_2">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_3">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_4">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_5">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_6">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_7">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="6_8">4</textarea></td>
+		</tr>
+		<tr>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_0">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_1">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_2">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_3">2</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_4">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_5">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_6">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_7">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="7_8">5</textarea></td>
+		</tr>
+		<tr >
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_0">3</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_1">9</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_2">5</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_3">8</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_4">1</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_5">4</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_6">7</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_7">6</textarea></td>
+			<td><textarea onfocus="this.select();" rows="1" cols="1" id="8_8">2</textarea></td>
+		</tr>
+	</table>
+
+	<button onclick="formArray()">validate</button>
+	</center>
+</body>
+</html>
