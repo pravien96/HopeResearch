@@ -15,8 +15,8 @@ if(isValidMail($email)){
 	    $mail->isSMTP();                                      // Set mailer to use SMTP
 	    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 	    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-	    $mail->Username = 'mpravien1996@gmail.com';                 // SMTP username
-	    $mail->Password = 'Premad123.';                           // SMTP password
+	    $mail->Username = 'dummy17051996@gmail.com';                 // SMTP username
+	    $mail->Password = 'dummydummy123';                           // SMTP password
 	    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 	    $mail->Port = 587;  
 	    //$mail->refreshToken = '9e57c96d4bd1eb1b4345b1ccf4da0c9e'                                  // TCP port to connect to
